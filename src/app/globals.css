@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Superstar";
+    src: url("/fonts/Superstar.ttf") format("truetype");
+    font-display: swap;
+}
+
+@theme {
+    /* Sama dengan repo shuffler */
+    --color-itcc-orange-300: #f8843f;
+    --color-itcc-orange-500: #da3d20;
+    --color-itcc-orange-900: #8e2815;
+    --color-itcc-heading: #e85a2c;
+    --color-itcc-red: #9c2c17;
+    --color-itcc-blue-500: #2157d4;
+    --color-itcc-blue-700: #1a4098;
+    --color-itcc-blue-300: #99a4ea;
+    --color-itcc-blue-200: #c7d2fe;
+    --color-itcc-blue-100: #dce3fb;
+    --color-itcc-blue-75: #e4eafb;
+    --color-itcc-blue-50: #eef2ff;
+    --color-itcc-blue-25: #f5f7ff;
+    --color-itcc-input: #f8faff;
+    --color-itcc-navy: #0f114c;
+    --color-itcc-ink: #0b1437;
+    --color-itcc-body: #374151;
+    --color-itcc-muted: #4b5563;
+    --color-itcc-surface: #f2f3f5;
+    --color-itcc-peach: #fff4ec;
+    --color-itcc-peach-200: #fdeae0;
+    --color-itcc-focus: #fab000;
+    --color-itcc-success: #166534;
+    --color-itcc-success-bg: #dcfce7;
+    --color-itcc-success-border: #86efac;
+
+    /* Khusus timer */
+    --color-itcc-orange-50: #fff7ed;
+    --color-itcc-orange-200: #f8c3a5;
+    --color-itcc-orange-ink: #7c2d12;
+    --color-itcc-blue-400: #2f6bea;
+    --color-itcc-danger: #b42318;
+    --color-itcc-danger-bg: #fff7f3;
+
+    --font-pixel: "Superstar", sans-serif;
+
+    --shadow-btn-primary: 0 4px 0 var(--color-itcc-orange-900);
+    --shadow-btn-secondary: 0 4px 0 var(--color-itcc-blue-700);
+    --shadow-btn-navy: 0 4px 0 var(--color-itcc-navy);
+    --shadow-frame-blue: 0 8px 0 var(--color-itcc-blue-700);
+    --shadow-frame-orange: 0 8px 0 var(--color-itcc-orange-900);
+    --shadow-card: 0 5px 0 var(--color-itcc-blue-700);
+    --shadow-card-orange: 0 5px 0 var(--color-itcc-orange-900);
+
+    --text-shadow-pixel: 1px 1px 0 var(--color-itcc-orange-900);
+    --text-shadow-pixel-navy: 1px 1px 0 var(--color-itcc-navy);
+    --text-shadow-pixel-outline:
+        -2px -2px 0 var(--color-itcc-orange-900), 2px -2px 0 var(--color-itcc-orange-900),
+        -2px 2px 0 var(--color-itcc-orange-900), 2px 2px 0 var(--color-itcc-orange-900),
+        0 5px 0 var(--color-itcc-orange-900);
+    --text-shadow-pixel-outline-sm:
+        -1px -1px 0 var(--color-itcc-orange-900), 1px -1px 0 var(--color-itcc-orange-900),
+        -1px 1px 0 var(--color-itcc-orange-900), 1px 1px 0 var(--color-itcc-orange-900),
+        0 3px 0 var(--color-itcc-orange-900);
+
+    --animate-drop: drop 0.3s ease-out both;
+    --animate-toast: toast 0.3s ease-out both;
+    --animate-bell: bell 0.5s ease-in-out 4;
+    --animate-overtime: overtime 1s ease-in-out infinite;
+
+    @keyframes drop {
+        from {
+            transform: translateY(8px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes toast {
+        from {
+            transform: translateY(-12px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes bell {
+        0%,
+        100% {
+            transform: rotate(0);
+        }
+        25% {
+            transform: rotate(-14deg);
+        }
+        75% {
+            transform: rotate(14deg);
+        }
+    }
+
+    @keyframes overtime {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.025);
+        }
+    }
+}
+
+/* static: dipakai lewat var(--color-tone-${tone}-*) di TimerDisplay, jadi harus selalu dihasilkan */
+@theme static {
+    --color-tone-blue-frame: #2157d4;
+    --color-tone-blue-shadow: #1a4098;
+    --color-tone-blue-fill: #e4eafb;
+    --color-tone-blue-digit: #2157d4;
+    --color-tone-blue-outline: #0f114c;
+    --color-tone-orange-frame: #e8692f;
+    --color-tone-orange-shadow: #8e2815;
+    --color-tone-orange-fill: #ffedd5;
+    --color-tone-orange-digit: #e85a2c;
+    --color-tone-orange-outline: #8e2815;
+    --color-tone-red-frame: #d92d20;
+    --color-tone-red-shadow: #7a271a;
+    --color-tone-red-fill: #fee4e2;
+    --color-tone-red-digit: #d92d20;
+    --color-tone-red-outline: #7a271a;
+    --color-itcc-orange-100: #fbd0b6;
+}
+
+@theme inline {
+    --font-sans: var(--font-poppins), sans-serif;
+}
+
+@custom-variant short (@media (max-height: 820px));
+
+@utility itcc-bg {
+    background: var(--color-itcc-surface) url("/images/bg-circuit-light.jpg") center top /
+        max(1440px, 100%) auto repeat-y;
+}
+
+@utility clip-frame {
+    clip-path: polygon(
+        var(--frame-cut, 44px) 0,
+        calc(100% - var(--frame-cut, 44px)) 0,
+        100% var(--frame-cut, 44px),
+        100% 100%,
+        0 100%,
+        0 var(--frame-cut, 44px)
+    );
+}
+
+@utility clip-octagon {
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+
+@layer base {
+    :focus-visible {
+        outline: 3px solid var(--color-itcc-focus);
+        outline-offset: 2px;
+    }
+
+    html:has(dialog[open]) {
+        overflow: hidden;
+    }
+}
